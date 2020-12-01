@@ -153,6 +153,7 @@ import "~/assets/css/web.css";
 
 import cookie from "js-cookie";
 import userApi from "@/api/login";
+import loginApi from "@/api/login";
 
 export default {
   data() {
@@ -169,9 +170,27 @@ export default {
     };
   },
   created() {
+    //一进去页面在页面渲染之前获取路径中的token
+    this.token = this.$route.query.token;
+    //判断路径中是否有token
+    if (this.token) {
+      this.wxLogin();
+    }
     this.showInfo();
   },
   methods: {
+    //微信登录的方法
+    wxLogin() {
+      //吧token放到cookie中
+      cookie.set("guli_token", this.token, { domain: "localhost" })
+      cookie.set("guli_ucenter", "", { domain: "localhost" })
+      //调用接口
+      loginApi.getLoginUserInfo().then(response => {
+        this.loginInfo = response.data.data.userInfo;
+        //将用户信息记录cookie
+        cookie.set("guli_ucenter", this.loginInfo, { domain: "localhost" });
+      });
+    },
     //创建方法，从cookie中获取用户信息
     showInfo() {
       //从cookie中获取用户信息
