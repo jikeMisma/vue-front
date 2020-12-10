@@ -18,7 +18,7 @@
               <span class="fsize24 c-333">{{ teacher.name }}&nbsp; {{ teacher.level===1?'高级讲师':'首席讲师' }}</span>
             </h3>
             <section class="mt10">
-              <span class="t-tag-bg">{{ teacher.intro }}</span>
+              <span style="font-size:15px" class="t-tag-bg">{{ teacher.intro }}</span>
             </section>
             <section class="t-infor-txt">
               <p

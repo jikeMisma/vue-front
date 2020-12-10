@@ -102,8 +102,13 @@
           </h4>
           <ul class="of flink-list">
             <li>
-              <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank"
-                >尚硅谷</a
+              <a href="https://blog.csdn.net/mzc_love" title="马志成CSDN" target="_blank"
+                >马志成CSDN</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/jikeMisma" title="马志成gitHub" target="_blank"
+                >马志成gitHub</a
               >
             </li>
           </ul>
@@ -117,11 +122,11 @@
                 <a href="#" title="联系我们" target="_blank">联系我们</a>|
                 <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
                 <a href="#" title="资源下载" target="_blank">资源下载</a>|
-                <span>服务热线：010-56253825(北京) 0755-85293825(深圳)</span>
-                <span>Email：info@atguigu.com</span>
+                <span>马志成TEL：15200371771</span>
+                <span>Email：2889479657@qq.com</span>
               </section>
               <section class="b-f-link mt10">
-                <span>©2018课程版权均归谷粒学院所有 京ICP备17055252号</span>
+                <span>©2020版权均归马志成所有</span>
               </section>
             </section>
           </section>

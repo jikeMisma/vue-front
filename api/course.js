@@ -17,5 +17,13 @@ export default {
     });
   },
 
+  //查詢課程詳情的方法
+  getBaseCourseInfo(courseId) {
+    return request({
+      url: `/eduservice/coursefront/getFrontCourseInfo/`+courseId,
+      method: "get"
+    });
+  },
+
 
 }
