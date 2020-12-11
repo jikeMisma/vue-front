@@ -6,5 +6,13 @@ export default {
       method: 'get',
       params: {courseId}
     })
-  }
+  },
+
+  addComment(comment) {
+        return request({
+          url: `/eduservice/comment/auth/save`,
+          method: 'post',
+          data: comment
+        })
+      }
 }

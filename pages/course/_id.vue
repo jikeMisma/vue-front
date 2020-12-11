@@ -255,7 +255,8 @@ export default {
         .then(response => {
           return {
             courseWebVo: response.data.data.courseWebVo,
-            chapterVideoList: response.data.data.chapterVideoList
+            chapterVideoList: response.data.data.chapterVideoList,
+            isbuyCourse:response.data.data.isbuyCourse
           }
         })
    },
@@ -286,9 +287,12 @@ export default {
     initCourseInfo() {
       courseApi.getBaseCourseInfo(this.courseId)
             .then(response => {
-              this.courseInfo=response.data.data.courseFrontInfo
+              this.courseInfo=response.data.data.courseWebVo
+              console.log(this.courseInfo)
               this.chapterVideoList=response.data.data.chapterVideoList
+               console.log(this.chapterVideoList)
               this.isbuyCourse=response.data.data.isbuyCourse
+               console.log(this.isbuyCourse)
             })
     },
 
@@ -296,6 +300,17 @@ export default {
        comment.getPageList(this.page, this.limit, this.courseId).then(response => {
            this.data = response.data.data
        })
+    },
+
+      addComment(){
+        this.comment.courseId = this.courseId
+        this.comment.teacherId = this.courseWebVo.teacherId
+        comment.addComment(this.comment).then(response => {
+            if(response.data.success){
+                this.comment.content = ''
+                this.initComment()
+            }
+        })
     },
 
     gotoPage(page){
