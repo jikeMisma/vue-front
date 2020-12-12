@@ -34,7 +34,7 @@
               </span>
             </section>
             <section class="c-attr-mt">
-              <a href="#" title="立即观看" class="comm-btn c-btn-3">立即观看</a>
+              <a @click="createOrders()" href="#" title="立即购买" class="comm-btn c-btn-3">立即购买</a>
             </section>
           </section>
         </aside>
@@ -249,6 +249,7 @@
 <script>
 import courseApi from '@/api/course'
 import comment from '@/api/commonedu'
+import orders from '@/api/orders'
 export default {
    asyncData({ params, error }) {
      return courseApi.getBaseCourseInfo(params.id)
@@ -256,8 +257,10 @@ export default {
           return {
             courseWebVo: response.data.data.courseWebVo,
             chapterVideoList: response.data.data.chapterVideoList,
-            isbuyCourse:response.data.data.isbuyCourse
+            courseIdIndex:params.id
+           
           }
+           console.log("==============>"+params.id);
         })
    },
 
@@ -267,6 +270,7 @@ export default {
       page:1,
       limit:4,
       total:10,
+      courseIdIndex:'',
       comment:{
         content:'',
         courseId:''
@@ -283,6 +287,17 @@ export default {
   },
 
   methods:{
+
+    //生成订单方法
+    createOrders(){
+      console.log(this.courseIdIndex)
+      orders.createOrders(this.courseIdIndex)
+      .then(response =>{
+        //返回的订单号
+        //生成订单后跳转到订单显示页面
+        this.$router.push({path:'/orders/'+response.data.data.orderId});
+      })
+    },
     //获取课程详情
     initCourseInfo() {
       courseApi.getBaseCourseInfo(this.courseId)
@@ -303,7 +318,7 @@ export default {
     },
 
       addComment(){
-        this.comment.courseId = this.courseId
+        this.comment.courseId =this.courseIdIndex
         this.comment.teacherId = this.courseWebVo.teacherId
         comment.addComment(this.comment).then(response => {
             if(response.data.success){
